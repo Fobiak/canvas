@@ -9,6 +9,7 @@ lerna-debug.log*
 
 node_modules
 dist
+.eslintrc-auto-import.json
 dist-ssr
 *.local
 
