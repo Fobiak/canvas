@@ -1,4 +1,4 @@
-import { ActionTypeEnum, type ActionType } from "../types/types"
+import { ActionTypeEnum, BrushColors, type ActionType, type BrushColor } from "../types/types"
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
 const ctx = ref<CanvasRenderingContext2D | null>(null)
@@ -7,6 +7,8 @@ const ctx = ref<CanvasRenderingContext2D | null>(null)
 const isDrawing = ref(false)
 /** Текущий режим рисования */
 const mode = ref<ActionType>(null)
+const brushSize = ref(5)
+const brushColor = ref<BrushColor>(BrushColors[0])
 
 export function useCanvas() {
     function initCanvas() {
@@ -17,6 +19,7 @@ export function useCanvas() {
 
         if (ctx.value) {
             ctx.value.lineCap = 'round'
+            ctx.value.lineWidth = brushSize.value
         }
     }
 
@@ -26,6 +29,20 @@ export function useCanvas() {
 
     function setEraseMode() {
         mode.value = ActionTypeEnum.ERASE
+    }
+
+    function setBrushSize(size: number) {
+        brushSize.value = size
+        if (ctx.value) {
+            ctx.value.lineWidth = brushSize.value
+        }
+    }
+
+    function setBrushColor(color: BrushColor) {
+        brushColor.value = color
+        if (ctx.value) {
+            ctx.value.strokeStyle = brushColor.value
+        }
     }
 
     function start(e: MouseEvent) {
@@ -42,11 +59,8 @@ export function useCanvas() {
 
         if (mode.value === ActionTypeEnum.ERASE) {
             ctx.value.globalCompositeOperation = 'destination-out'
-            ctx.value.lineWidth = 20
         } else {
             ctx.value.globalCompositeOperation = 'source-over'
-            ctx.value.strokeStyle = '#000'
-            ctx.value.lineWidth = 5
         }
 
         ctx.value.lineTo(e.offsetX, e.offsetY)
@@ -67,5 +81,9 @@ export function useCanvas() {
         setEraseMode,
         mode,
         isDrawing,
+        setBrushSize,
+        brushSize,
+        brushColor,
+        setBrushColor
     }
 }
