@@ -5,11 +5,11 @@ const props = defineProps<{
 
 const type = props.type || 'primary'
 
-const baseClasses = 'rounded p-2 cursor-pointer'
+const baseClasses = 'rounded-md p-2 cursor-pointer transition-transform duration-150 transform active:scale-95'
 
 const typeClasses = {
     primary: 'bg-blue-500 text-white hover:bg-blue-600',
-    secondary: 'bg-gray-200 text-gray-800 hover:bg-gray-300',
+    secondary: 'bg-gray-300 text-gray-800 hover:bg-gray-300',
 }
 
 </script>

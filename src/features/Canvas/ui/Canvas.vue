@@ -14,8 +14,8 @@ const wrapperRef = ref<HTMLElement | null>(null)
 function resizeCanvas() {
     if (!canvasRef.value || !wrapperRef.value)
         return
-    canvasRef.value.width = wrapperRef.value.clientWidth - 100
-    canvasRef.value.height = wrapperRef.value.clientHeight - 50
+    canvasRef.value.width = wrapperRef.value.clientWidth
+    canvasRef.value.height = wrapperRef.value.clientHeight
     initCanvas()
 }
 
@@ -33,7 +33,6 @@ onUnmounted(() => {
 
 <template>
     <div ref="wrapperRef" class="size-full flex items-center justify-center">
-        <canvas ref="canvasRef" class="border-4 border-cyan-600 bg-white rounded-2xl" @mousedown="start"
-            @mousemove="move" />
+        <canvas ref="canvasRef" class="bg-white rounded-2xl shadow-2xl" @mousedown="start" @mousemove="move" />
     </div>
 </template>
