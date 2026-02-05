@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+:root {
+  --font-primary: 'Inter', 'Roboto', sans-serif;
+}
+
+body {
+  font-family: var(--font-primary);
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: linear-gradient(135deg, #6b8ab8, #eef1f6);
+}
