@@ -12,12 +12,12 @@ const {
 
 <template>
     <div class="flex gap-2">
-        <ComButton class="flex gap-1" @click="setDrawMode">
+        <ComButton class="flex gap-1 items-center" @click="setDrawMode">
             <BrushIcon />
             Рисовать
         </ComButton>
 
-        <ComButton :type="'secondary'" class="flex gap-1" @click="setEraseMode">
+        <ComButton :type="'secondary'" class="flex gap-1 items-center" @click="setEraseMode">
             <EraserIcon />
             Стереть
         </ComButton>
