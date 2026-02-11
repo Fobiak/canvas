@@ -31,7 +31,7 @@ const {
             </div>
 
             <input type="range" class="max-w-25 cursor-pointer accent-blue-500" min="1" max="10" v-model="brushSize"
-                @input="setBrushSize(+brushSize)" />
+                @input="setBrushSize(brushSize)" />
         </div>
 
         <div class="flex gap-1">

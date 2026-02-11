@@ -3,11 +3,9 @@ import { ActionTypeEnum, BrushColors, type ActionType, type BrushColor } from ".
 const canvasRef = ref<HTMLCanvasElement | null>(null)
 const ctx = ref<CanvasRenderingContext2D | null>(null)
 
-/** Флаг , рисуем ли мы */
-const isDrawing = ref(false)
-/** Текущий режим рисования */
+const isDrawing = ref<boolean>(false)
 const mode = ref<ActionType>(null)
-const brushSize = ref(5)
+const brushSize = ref<number>(5)
 const brushColor = ref<BrushColor>(BrushColors[0])
 
 export function useCanvas() {
@@ -55,7 +53,8 @@ export function useCanvas() {
     }
 
     function move(e: MouseEvent) {
-        if (!isDrawing.value || !ctx.value) return
+        if (!isDrawing.value || !ctx.value)
+            return
 
         if (mode.value === ActionTypeEnum.ERASE) {
             ctx.value.globalCompositeOperation = 'destination-out'
@@ -74,16 +73,16 @@ export function useCanvas() {
     return {
         canvasRef,
         initCanvas,
+        setDrawMode,
+        setEraseMode,
+        setBrushSize,
+        setBrushColor,
         start,
         move,
         stop,
-        setDrawMode,
-        setEraseMode,
         mode,
         isDrawing,
-        setBrushSize,
         brushSize,
-        brushColor,
-        setBrushColor
+        brushColor
     }
 }

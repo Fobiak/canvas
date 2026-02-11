@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
 import { useCanvas } from '../model/useCanvas'
 
 const {
